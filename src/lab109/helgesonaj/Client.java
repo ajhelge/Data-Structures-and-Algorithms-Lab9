@@ -41,7 +41,7 @@ public class Client {
 
         //Step 4
 
-        final int MAX = 8325; //8325 is the limit
+        final int MAX = 7500; //8325 is the limit, will crash at 8326, unreliable past 7500.
         BinarySearchTree millionAcending = new BinarySearchTree();
         BinarySearchTree millionDecending = new BinarySearchTree();
         BinarySearchTree millionRandom = new BinarySearchTree();
