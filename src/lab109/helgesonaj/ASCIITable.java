@@ -2,6 +2,7 @@ package lab109.helgesonaj;
 
 public class ASCIITable {
     private String [] tableRows;
+    private int totalCollums = 0;
 
 
     private class Header{
@@ -49,5 +50,13 @@ public class ASCIITable {
 
     ASCIITable(){}
 
-    
+    public void addRow(){
+        
+    }
+
+    public void printTable(){
+        for(String s : tableRows){
+            System.out.println(s);
+        }
+    }
 }
