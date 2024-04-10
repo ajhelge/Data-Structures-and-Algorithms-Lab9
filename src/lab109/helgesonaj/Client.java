@@ -41,7 +41,7 @@ public class Client {
 
         //Step 4
 
-        final int MAX = 7500; //8325 is the limit, will crash at 8326, unreliable past 7500.
+        final int MAX = 100; //8325 is the limit, will crash at 8326, unreliable past 7500.
         BinarySearchTree millionAcending = new BinarySearchTree();
         BinarySearchTree millionDecending = new BinarySearchTree();
         BinarySearchTree millionRandom = new BinarySearchTree();
@@ -50,7 +50,7 @@ public class Client {
         
         //create a set of random numbers for the million Random tree.
         while(uniqueRandomNumbers.size() < MAX){
-            uniqueRandomNumbers.add(randomizer.nextInt(MAX * 10));
+            uniqueRandomNumbers.add(randomizer.nextInt(MAX));
         }
 
         for(int i = 0; i < MAX; i++){

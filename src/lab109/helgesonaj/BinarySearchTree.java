@@ -180,20 +180,22 @@ public class BinarySearchTree {
         currentLayer.push(node);
         while (currentLayer.top() != null) {
 
-            // For each node in current list, add it's childen to next layer.
-            int currentSize = currentLayer.size();
-            Node currentNode = currentLayer.pop();
-            for (int i = 0; i < currentSize; i++) {
-                if (currentNode.left != null) {
-                    nextLayer.push(currentNode.left);
-                }
-                if (currentNode.right != null) {
-                    nextLayer.push(currentNode.right);
+            while(currentLayer.top() != null){
+                // For each node in current list, add it's childen to next layer.
+                int currentSize = currentLayer.size();
+                Node currentNode = currentLayer.pop();
+                for (int i = 0; i < currentSize; i++) {
+                    if (currentNode.left != null) {
+                        nextLayer.push(currentNode.left);
+                    }
+                    if (currentNode.right != null) {
+                        nextLayer.push(currentNode.right);
+                    }
                 }
             }
 
             // If there is a next layer of the tree then increment height.
-            if (nextLayer != null) {
+            if (nextLayer.top() != null) {
                 height++;
             }
 

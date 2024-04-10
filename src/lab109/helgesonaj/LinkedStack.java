@@ -1,7 +1,5 @@
 package lab109.helgesonaj;
 
-import java.util.Iterator;
-
 /**
  * Data Structures & Algorithms 6th Edition 
  * Goodrick, Tamassia, Goldwasser
