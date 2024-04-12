@@ -108,16 +108,23 @@ public class Client {
         //step 5
 
 
-        String[] data = new String[5];
-
+        String[] data = new String[5];//to hold header contents
         data[0] = "Condition";
         data[1] = "   N   ";
         data[2] = "Height";
         data[3] = "log(N)";
-        data[4] = "A bunch of gobldy gok";
-        Table tableOne = new Table();
-        tableOne.buildHeader(data);
 
+        //initaltize four new tables.
+        Table tableOne = new Table();
+        Table tableTwo = new Table();
+        Table tableThree = new Table();
+        Table tableFour = new Table();
+        //build headers for each table.
+        tableOne.buildHeader(data);
+        tableTwo.buildHeader(data);
+        tableThree.buildHeader(data);
+        tableFour.buildHeader(data);
+        
         tableOne.printTable();
 
     }
