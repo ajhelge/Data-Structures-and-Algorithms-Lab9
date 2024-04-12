@@ -160,6 +160,7 @@ public class BinarySearchTree {
         }
     }
 
+    // Recursive Height Method.
     // public int height(Node node) {
     // if(node == null){return 0;}
     // int h = 0;
@@ -178,22 +179,21 @@ public class BinarySearchTree {
         LinkedStack<Node> nextLayer = new LinkedStack<>();
 
         currentLayer.push(node);
-        while (currentLayer.top() != null) {
+        while (!currentLayer.isEmpty()) {
 
-            while(currentLayer.top() != null){
-                // For each node in current list, add it's childen to next layer.
-                int currentSize = currentLayer.size();
+
+            // For each node in current list, add it's childen to next layer.
+            int currentSize = currentLayer.size();
+            for (int i = 0; i < currentSize; i++) {
                 Node currentNode = currentLayer.pop();
-                for (int i = 0; i < currentSize; i++) {
-                    if (currentNode.left != null) {
-                        nextLayer.push(currentNode.left);
-                    }
-                    if (currentNode.right != null) {
-                        nextLayer.push(currentNode.right);
-                    }
+                if (currentNode.left != null) {
+                    nextLayer.push(currentNode.left);
+                }
+                if (currentNode.right != null) {
+                    nextLayer.push(currentNode.right);
                 }
             }
-
+            
             // If there is a next layer of the tree then increment height.
             if (nextLayer.top() != null) {
                 height++;
