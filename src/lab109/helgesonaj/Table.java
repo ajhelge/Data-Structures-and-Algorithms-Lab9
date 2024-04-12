@@ -69,10 +69,10 @@ public class Table {
 
     // This function replaces String.format because it was not working properly.
     public String getDataRowPadding(String s) {
-        int spaces = (columnWidth - s.length()) / 2;
+        double spaces = ((double)columnWidth - (double)s.length()) / 2.0;
         String dataRow = "";
 
-        if (s.length() % 2 == 0) {
+        if (s.length() % 1 == 0) {
             dataRow += "|";
             for (int i = 0; i < spaces; i++) {
                 dataRow += " ";
@@ -81,16 +81,16 @@ public class Table {
             for (int i = 0; i < spaces; i++) {
                 dataRow += " ";
             }
-        }// else {
-        //     dataRow += "|";
-        //     for (int i = 0; i < spaces; i++) {
-        //         dataRow += " ";
-        //     }
-        //     dataRow += s;
-        //     for (int i = 0; i < spaces; i++) {
-        //         dataRow += " ";
-        //     }
-        // }
+        } else {
+             dataRow += "| ";
+             for (int i = 0; i < spaces; i++) {
+                 dataRow += " ";
+             }
+             dataRow += s;
+             for (int i = 0; i < spaces; i++) {
+                 dataRow += " ";
+             }
+        }
 
         return dataRow;
     }
@@ -108,15 +108,8 @@ public class Table {
 
     private String getSeparatorPadding(String s) {
         String padding = "+";
-        if (s.length() % 2 == 0) {
-            for (int i = 0; i < columnWidth; i++) {
-                padding += "-";
-            }
-        }
-        else{
-            for (int i = 0; i < columnWidth; i++) {
-                padding += "-";
-            }
+        for (int i = 0; i < columnWidth; i++) {
+            padding += "-";
         }
         return padding;
     }
