@@ -1,5 +1,11 @@
 package lab109.helgesonaj;
 
+/**
+ * A class that can be used to create ASCII tables.
+ * @version 4/12/2024
+ * @author Alec Helgeson
+ */
+
 public class Table {
     private String[] tableRows;
     private int addRowIndex = 0;
@@ -7,12 +13,21 @@ public class Table {
     private int numberOfColumns = 0;
     private int tableLength = 3; // starts as three to acomadate a header
 
+    /**
+     * Constructor
+     */
     Table() {
         tableRows = new String[tableLength];
     }
 
+    /**
+     * Builds the header for the table.
+     * The number of arguments determines the number of columns.
+     * column width is set by the largest string in the given arguments.
+     * @param data
+     */
     public void buildHeader(String... data) {
-        columnWidth = 0;
+        columnWidth = 0;//Reset in case someone wants to overwrite the table header.
         numberOfColumns = data.length;
         findLargestString(data);
         String topRow = "";
@@ -25,12 +40,15 @@ public class Table {
             dataRow += getDataRowPadding(s);
             bottomRow += padding;
         }
-        addRowIndex += 3;
+        addRowIndex += 3;//So the rest of the program inserts after the header
         tableRows[0] = topRow + "+";
         tableRows[1] = dataRow + "|";
         tableRows[2] = bottomRow + "+";
     }
-
+    /**
+     * Adds a row to the table.
+     * @param data
+     */
     public void addRow(String... data) {
         String newDataRow = "";
         String bottomCap = "";
@@ -48,7 +66,10 @@ public class Table {
         isTableBig();
         tableRows[addRowIndex++] = bottomCap + "+";
     }
-
+    /**
+     * Finds the largest string in an array of strings
+     * @param data
+     */
     private void findLargestString(String data[]) {
         int currentMax = 0;
         for (String s : data) {
@@ -58,7 +79,9 @@ public class Table {
         }
         columnWidth += currentMax + 4;
     }
-
+    /**
+     * Prints all of the non-null strings in the table.
+     */
     public void printTable() {
         for (String s : tableRows) {
             if (s != null) {
@@ -68,6 +91,11 @@ public class Table {
     }
 
     // This function replaces String.format because it was not working properly.
+    /**
+     * Ensures equal spacing of data rows. based on the largest column.
+     * @param s
+     * @return
+     */
     public String getDataRowPadding(String s) {
         if(s == null){
             return null;
@@ -75,7 +103,7 @@ public class Table {
         double spaces = ((double)columnWidth - (double)s.length()) / 2.0;
         String dataRow = "";
 
-        if (spaces % 1.0 == 0) {
+        if (spaces % 1.0 == 0) {//check for trunkation
             dataRow += "|";
             for (int i = 0; i < spaces; i++) {
                 dataRow += " ";
@@ -84,7 +112,7 @@ public class Table {
             for (int i = 0; i < spaces; i++) {
                 dataRow += " ";
             }
-        } else {
+        } else {//if trunkation exists remove on space from left padding.
              dataRow += "|";
              for (int i = 0; i < spaces; i++) {
                  dataRow += " ";
@@ -97,7 +125,9 @@ public class Table {
 
         return dataRow;
     }
-
+    /**
+     * Checks to be sure the table is big enough to insert a new row.
+     */
     private void isTableBig() {
         if (addRowIndex >= tableLength) {
             String[] newTable = new String[tableLength * 2];
@@ -108,7 +138,11 @@ public class Table {
             tableRows = newTable;
         }
     }
-
+    /**
+     * Ensures proper spacing between column delimiters of the row dividers.
+     * @param s
+     * @return
+     */
     private String getSeparatorPadding(String s) {
         if(s == null){
             return null;
@@ -119,7 +153,11 @@ public class Table {
         }
         return padding;
     }
-
+    /**
+     * pads empty cells to ensure equal column spacing.
+     * @param counter
+     * @return
+     */
     private String getSpaceing(int counter) {
         String padding = "|";
         for (int i = 0; i < columnWidth; i++) {

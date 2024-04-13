@@ -1,6 +1,6 @@
 package lab109.helgesonaj;
 
-import java.util.Random;;
+import java.util.Random;
 
 /**
  *
