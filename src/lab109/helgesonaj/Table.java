@@ -52,7 +52,7 @@ public class Table {
     private void findLargestString(String data[]) {
         int currentMax = 0;
         for (String s : data) {
-            if (currentMax <= s.length()) {
+            if ((s != null) && (currentMax <= s.length())) {
                 currentMax = s.length();
             }
         }
@@ -69,10 +69,13 @@ public class Table {
 
     // This function replaces String.format because it was not working properly.
     public String getDataRowPadding(String s) {
+        if(s == null){
+            return null;
+        }
         double spaces = ((double)columnWidth - (double)s.length()) / 2.0;
         String dataRow = "";
 
-        if (s.length() % 1 == 0) {
+        if (spaces % 1.0 == 0) {
             dataRow += "|";
             for (int i = 0; i < spaces; i++) {
                 dataRow += " ";
@@ -82,12 +85,12 @@ public class Table {
                 dataRow += " ";
             }
         } else {
-             dataRow += "| ";
+             dataRow += "|";
              for (int i = 0; i < spaces; i++) {
                  dataRow += " ";
              }
              dataRow += s;
-             for (int i = 0; i < spaces; i++) {
+             for (int i = 0; i < spaces - 1; i++) {
                  dataRow += " ";
              }
         }
@@ -107,6 +110,9 @@ public class Table {
     }
 
     private String getSeparatorPadding(String s) {
+        if(s == null){
+            return null;
+        }
         String padding = "+";
         for (int i = 0; i < columnWidth; i++) {
             padding += "-";
